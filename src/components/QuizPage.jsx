@@ -141,12 +141,12 @@ export default function QuizPage() {
     }
 
     function handleButtonClick() {
-        if(inputValue.current.value === '') {
+        if( inputValue.current.value === '') {
             handleSkipAnswer()
             return
         }
         const romajiValue = kanaListValues.kanaList[0].r_value.filter((romaji) => {
-            return romaji === inputValue.current.value
+            return romaji === inputValue.current.value.toLowerCase()
         })
         if(romajiValue.length > 0) {
             handleCorrectAnswer()
