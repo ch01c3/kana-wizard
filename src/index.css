@@ -52,7 +52,6 @@ body {
     url('../public/bg-dark.png');
   background-repeat: repeat;
   background-size: 18rem;
-  touch-action: none;
 }
 
 #root {
