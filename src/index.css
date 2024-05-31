@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Mochiy+Pop+One&family=Noto+Sans+JP:wght@100..900&family=Shippori+Mincho+B1&display=swap');
+
+@font-face {
+  font-family: 'MidNight';
+    src: url('./assets/fonts/MidNightRegular.eot');
+    src: url('./assets/fonts/MidNightRegular.eot?#iefix') format('embedded-opentype'),
+        url('./assets/fonts/MidNightRegular.woff2') format('woff2'),
+        url('./assets/fonts/MidNightRegular.woff') format('woff'),
+        url('./assets/fonts/MidNightRegular.ttf') format('truetype'),
+        url('./assets/fonts/MidNightRegular.svg#MidNightRegular') format('svg');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --primary-color: rgb(188, 0, 45);
+  --secondary-color: rgb(255,255,255);
+  --font-color: #191919;
+  --input-border: #bc002d;
+  --input-focus-h: 345;
+  --input-focus-s: 100%;
+  --input-focus-l: 35%;
+}
+
+*,*::before,*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  font-family: 'Lato', sans-serif;
+  line-height: 1.5;
+  color: var(--font-color);
+  font-synthesis: style;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  }
+  
+body {
+  background: linear-gradient(
+    rgba(207, 217, 223, 0.95),
+    rgba(207, 217, 223, 0.94) 1.5%,
+    rgba(207, 217, 223, 0.93) 6%,
+    rgba(207, 217, 223, 0.92) 85%,
+    rgba(207, 217, 223, 0.93) 6%,
+    rgba(207, 217, 223, 0.94) 1.5%,
+    rgba(207, 217, 223, 0.95)
+  ),
+    url('bg-dark.png');
+  background-repeat: repeat;
+  background-size: 18rem;
+  touch-action: none;
+}
+
+#root {
+  display: grid;
+  height: 100vh;
+  grid-template-rows: auto 1fr auto;
+}
+
+h1 {
+  font-size: 1.4em;
+}
+
+h2 {
+  font-size: 1.2em;
+  font-weight: normal;
+}
+
+
+/* Main Header styles */
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 9.5rem;
+}
+
+/* All container-content box styles  */
+.box-effects {
+  box-shadow: 0px 5px 4px 0px rgba(0,0,0,0.25);
+  background-color: rgba(255, 255, 255, 25%);
+  backdrop-filter: blur(3px);
+}
+
+/* All text-containers styles */
+.text-container {
+  max-width: 600px;
+  width: auto;
+  display: flex;
+  justify-content: end;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.text-container :where(h1,h2,h3), .quiz-progress h1, .quiz-log, .quiz-game {
+  text-align: center;
+}
+
+.text-link {
+  font-style: italic;
+  text-decoration: underline;
+  color: var(--primary-color);
+  cursor: pointer;
+}
+
+/* Main footer styles */
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 5rem;
+}
+
+@media (width < 700px) {
+  .text-container {
+    max-width: 85%;
+    min-width: 250px;
+    width: auto;
+    display: flex;
+    justify-content: end;
+    flex-direction: column;
+    padding: 20px;
+  }
+}
+
+@media (width < 450px) {
+  header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 8rem;
+  }
+
+  #logo-img {
+    height: 6rem;
+  }
+
+  #logo-title {
+    line-height: 1;
+    margin: 0px;
+    font-size: 1.6rem;
+  }
+
+  h1 {
+    font-size: 0.9em;
+  }
+  
+  h2 {
+    font-size: 0.8em;
+    font-weight: normal;
+  }
+
+  p {
+    font-size: 0.75em;
+  }
+
+  footer {
+    font-size: 0.9rem;
+    height: 3rem;
+  }
+}

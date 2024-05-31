@@ -1,0 +1,384 @@
+#logo-img {
+  height: 8.8rem;
+  margin-right: 20px;
+}
+  
+#logo-title {
+  font-family: 'MidNight','Lato',sans-serif;
+  font-size: 3.2rem;
+}
+  
+main.homepage {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0px 40px 0px;
+}
+
+a:link {
+  font-style: italic;
+  color: var(--primary-color);
+}
+
+a:visited {
+  color: #621628;
+}
+
+/* Dialog Modal styles */
+
+.romaji-modal {
+  margin: auto;
+  border: none;
+  padding: 0px 30px 30px 30px;
+  background-color: rgba(255,255,255,0.5);
+  backdrop-filter: blur(10px)
+}
+
+.romaji-modal button {
+  align-self: flex-end;
+  margin-top: 15px ;
+  background-color: #BC002D;
+  color: white;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  justify-content: center;
+}
+
+.romaji-modal button:active {
+  position:relative;
+  top:1px;
+}
+
+
+
+#close-dialog {
+  display: flex;
+  justify-content: end;
+}
+
+#romaji-table {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.romaji-modal[open] {
+  display: flex;
+  flex-direction: column;
+  animation: slide-in-from-top 0.35s ease-out;
+}
+
+.romaji-modal::backdrop {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+#romaji-table table {
+  height: fit-content;
+  border: 1px solid #191919;
+  border-top: 0px;
+  border-collapse: collapse;
+  margin: 10px;
+}
+
+#romaji-table caption {
+  background-color: #BC002D;
+  font-size: 1.25rem;
+  color: var(--secondary-color);
+}
+
+#romaji-table tr {
+  text-align: center;
+}
+
+#romaji-table tr:nth-child(even) {
+  background-color: #191919;
+  color: var(--secondary-color);
+}
+
+#romaji-table tr:nth-child(odd) {
+  background-color: var(--secondary-color);
+}
+
+#romaji-table th {
+  background-color: #BC002D;
+  border-left: 1px solid #BC002D;
+  border-right:  1px solid#BC002D;
+  color: var(--secondary-color);
+  padding: 0px 5px 0px 5px;
+}
+
+#romaji-table td {
+  font-size: 1.1rem;
+}
+
+#romaji-table td:last-child {
+  padding-right: 10px;
+}
+
+.font-form-container, .content-form-container, .content-form {
+  width: 600px;
+  min-width: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  place-items: center;
+  margin-top: 40px;
+  padding: 20px;
+}
+
+.font-form-container {
+  z-index: 1;
+}
+  
+.font-form-display {
+  height: 200px;
+  width: 300px;
+  display: flex;
+  margin: 40px 0px 40px 0px;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  background-color: var(--secondary-color);
+  border: 5px double #BC002D;
+  font-weight: bold;
+  font-size: 6.5em;
+}
+
+.content-form {
+  width: fit-content;
+  align-items: flex-start;
+  margin-top: 0px;
+  padding-top: 0px;
+}
+
+.content-form span {
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: flex-end;
+}
+
+.checkbox-item label{
+  padding-left: 15px;
+}
+
+/* Dropdown Button */
+.dropbtn {
+  background-color: #BC002D;
+  width: 160px;
+  height: 40px;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  justify-content: center;
+}
+  
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #900022;
+}
+  
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+  
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+  
+/* Links inside the dropdown */
+.dropdown-content span {
+  color: #191919;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+}
+  
+/* Change color of dropdown links on hover */
+.dropdown-content span:hover {background-color: #ddd;}
+  
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;} 
+
+/* Checkbox */
+.checkbox-wrapper input[type=checkbox] {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+.checkbox-wrapper label {
+  --size: 45px;
+  cursor: pointer;
+  width: var(--size);
+  height: calc(var(--size) / 2);
+  background: grey;
+  display: block;
+  border-radius: 100px;
+  position: relative;
+}
+
+.checkbox-wrapper label:after {
+  content: '';
+  position: absolute;
+  top: 6%;
+  left: 2.5%;
+  width: calc(50% - 5%);
+  height: calc(100% - 11%);
+  background: #fff;
+  border-radius: 90px;
+  transition: 0.3s;
+}
+
+.checkbox-wrapper input:checked + label {
+  background: #BC002D;
+}
+
+.checkbox-wrapper input:checked + label:after {
+  left: calc(100% - 2.5%);
+  transform: translateX(-100%);
+}
+
+.checkbox-wrapper label:active:after {
+  width: 55%;
+}
+/* Form Buttons */
+.content-form span button {
+  width: 90px;
+  height: 30px;
+  background-color: #BC002D;
+  box-shadow: 0px 4px 0px 0px #900022;
+  color: white;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  justify-content: center;
+}
+
+.content-form span button:active {
+  position:relative;
+  top:1px;
+}
+
+/* start button styles */
+#submit-button {
+  align-self: center;
+  margin-top: 40px;
+  box-shadow: 0px 4px 0px 0px #900022;
+  background-color:#BC002D;
+  border: none;
+  display:inline-block;
+  cursor:pointer;
+  color:#FFFFFF;
+  font-family:'Lato', sans-serif;
+  font-size:1.1em;
+  padding:7px 25px;
+}
+
+#submit-button:active {
+  position:relative;
+  top:1px;
+}
+
+
+@media (width < 700px) {
+  .font-form-container, .content-form-container {
+    width: 85%;
+    height: auto;
+    display: flex;
+    place-items: center;
+    margin-top: 40px;
+    padding: 20px;
+  }
+  
+  .content-form-container {
+    text-align: center;
+  }
+}
+
+@media (width < 450px) {
+
+  #romaji-table caption {
+    background-color: #BC002D;
+    font-size: 1.1rem;
+    color: var(--secondary-color);
+  }
+
+  #romaji-table table th {
+    font-size: 0.9rem;
+  }
+
+  #romaji-table table td {
+    font-size: 0.8rem;
+  }
+
+
+  .font-form-display {
+    height: 100px;
+    width: 80%;
+    max-width: 180px;
+    margin: 20px 0px 20px 0px;
+    display: flex;
+    font-size: 3em;
+  }
+
+  .dropbtn {
+    width: 90px;
+    height: 25px;
+    color: white;
+    font-size: 0.7rem;
+    border: none;
+    cursor: pointer;
+    justify-content: center;
+  }
+
+  .dropdown-content {
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 90px;
+    font-size: 0.7rem;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  }
+  
+  .checkbox-wrapper label {
+    --size: 30px;
+    width: var(--size);
+    height: calc(var(--size) / 2);
+  }
+
+  .content-form-container label {
+    font-size: 0.8rem;
+  }
+
+  .content-form span{
+    justify-content: space-evenly;
+  }
+
+  .content-form span button {
+    font-size: 0.6rem;
+    width: 60px;
+    height: 20px;
+  }
+
+  #submit-button {
+    margin-top: 30px;
+    padding:5px 20px;
+    font-size: 0.7rem;
+  }
+}
