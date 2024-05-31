@@ -49,7 +49,7 @@ body {
     rgba(207, 217, 223, 0.94) 1.5%,
     rgba(207, 217, 223, 0.95)
   ),
-    url('bg-dark.png');
+    url('../public/bg-dark.png');
   background-repeat: repeat;
   background-size: 18rem;
   touch-action: none;
