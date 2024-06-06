@@ -28,7 +28,7 @@ const kanaAswers = {
         textColor: '#be201c',
     }}
 
-export default function QuizPage() {
+export default function QuizPage({onReturn}) {
     const {fontValue, checkBoxes } = useContext(FormValues);
     let kanaList = []
     Object.entries(checkBoxes).forEach((element,index) => {
@@ -164,6 +164,10 @@ export default function QuizPage() {
         setKanaListValues(initialStateList)
     }
 
+    function handleReturnButton() {
+        onReturn(true)
+    }
+
     return (
         <>
         <div className='text-container box-effects'>
@@ -225,6 +229,7 @@ export default function QuizPage() {
                 <button type='button' onClick={handleStartOver}>Start Over</button>
             </div>
         </div>
+            <button id='return-button' onClick={handleReturnButton}>Return Home</button>
         </>
     )
 }

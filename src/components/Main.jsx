@@ -27,7 +27,7 @@ export default function Main() {
         <FormValues.Provider value={ctxValue}>
         <main className={isHomepage ? "homepage": "quizpage"}>
             {isHomepage && <Homepage onSubmitForm={setIsHomepage}/>}
-            {!isHomepage && <QuizPage/>}
+            {!isHomepage && <QuizPage onReturn={setIsHomepage}/>}
         </main>
         </FormValues.Provider>
     )

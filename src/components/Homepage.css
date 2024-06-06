@@ -172,14 +172,16 @@ a:visited {
 
 /* Dropdown Button */
 .dropbtn {
-  background-color: #BC002D;
+  min-width: 90px;
+  max-width: 180px;
   width: 160px;
   height: 40px;
+  text-align: center;
+  background-color: #BC002D;
   color: white;
   font-size: 1rem;
   border: none;
   cursor: pointer;
-  justify-content: center;
 }
   
 /* Dropdown button on hover & focus */
@@ -260,8 +262,8 @@ a:visited {
 }
 /* Form Buttons */
 .content-form span button {
-  width: 90px;
-  height: 30px;
+  max-width: 100px;
+  padding: 5px;
   background-color: #BC002D;
   box-shadow: 0px 4px 0px 0px #900022;
   color: white;
@@ -328,7 +330,6 @@ a:visited {
     font-size: 0.8rem;
   }
 
-
   .font-form-display {
     height: 100px;
     width: 80%;
@@ -339,7 +340,8 @@ a:visited {
   }
 
   .dropbtn {
-    width: 90px;
+    width: auto;
+    padding: 0px 10px 0px 10px;
     height: 25px;
     color: white;
     font-size: 0.7rem;
@@ -355,11 +357,15 @@ a:visited {
     font-size: 0.7rem;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   }
-  
+
   .checkbox-wrapper label {
     --size: 30px;
     width: var(--size);
     height: calc(var(--size) / 2);
+  }
+
+  .checkbox-item {
+    margin-left: 25px;
   }
 
   .content-form-container label {
@@ -372,8 +378,6 @@ a:visited {
 
   .content-form span button {
     font-size: 0.6rem;
-    width: 60px;
-    height: 20px;
   }
 
   #submit-button {

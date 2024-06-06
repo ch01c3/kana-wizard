@@ -82,13 +82,14 @@ main.quizpage {
 .quiz-button {
     margin-bottom: 20px;
     height: 30px;
+    padding:5px 20px;
     background-color: #BC002D;
     box-shadow: 0px 4px 0px 0px #900022;
     color: white;
+    text-align: center;
     font-size: 0.9rem;
     border: none;
     cursor: pointer;
-    justify-content: center;
 }
   
 .quiz-button:hover {
@@ -139,15 +140,14 @@ main.quizpage {
 }
 
 .quiz-progress button {
-    margin-top: 10px;
-    height: 30px;
-    background-color: #BC002D;
-    box-shadow: 0px 4px 0px 0px #900022;
-    color: white;
-    font-size: 0.9rem;
-    border: none;
-    cursor: pointer;
-    justify-content: center;
+  margin-top: 10px;
+  box-shadow: 0px 4px 0px 0px #900022;
+  background-color:#BC002D;
+  border: none;
+  cursor:pointer;
+  color:#FFFFFF;
+  font-size:0.9em;
+  padding:5px 15px;
 }
 
 .quiz-progress button:active {
@@ -158,13 +158,13 @@ main.quizpage {
 /* Quiz Over styles */
 .quiz-game-over {
         display: flex;
+        width: 100%;
+        height: 100%;
         flex-direction: column;
         position: absolute;
         justify-content: space-evenly;
         align-items: center;
         padding: 30px;
-        width: 100%;
-        height: 100%;
         background-color: white;
         backdrop-filter: blur(5px);
 }
@@ -183,7 +183,7 @@ main.quizpage {
     font-size: 0.9rem;
     border: none;
     cursor: pointer;
-    justify-content: center;
+    text-align: center;
 }
 
 .game-over-result {
@@ -195,6 +195,22 @@ main.quizpage {
 .game-over-result img {
     height: 50px;
 }
+
+#return-button {
+  margin-top: 40px;
+  box-shadow: 0px 4px 0px 0px #900022;
+  background-color:#BC002D;
+  border: none;
+  cursor:pointer;
+  color:#FFFFFF;
+  font-size:1em;
+  padding:7px 25px;
+}
+
+#return-button:active {
+    position:relative;
+    top:1px;
+  }
 
 @media (width < 800px) {
     .quiz-log, .quiz-progress {
@@ -222,12 +238,12 @@ main.quizpage {
     }
 
     .quiz-log, .quiz-progress {
-        width: 250px;
+        width: 80%;
         padding: 15px;
     }
     
     .quiz-game { 
-        width: 250px;
+        width: 80%;
     }
 
     .quiz-log-display, .quiz-game-display {
@@ -245,6 +261,7 @@ main.quizpage {
     }
 
     .quiz-button, .quiz-progress button, .quiz-game-over button {
+        padding: 0px 10px 0px 10px;
         height: 20px;
         font-size: 0.7rem;
     }
@@ -264,5 +281,11 @@ main.quizpage {
 
     .game-over-result img {
         height: 30px;
+    }
+
+    #return-button {
+        font-size: 0.8rem;
+        padding: 5px 10px 5px 10px;
+        margin-top: 20px;
     }
 }
