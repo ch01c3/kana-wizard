@@ -229,7 +229,7 @@ export default function QuizPage({onReturn}) {
                 <button type='button' onClick={handleStartOver}>Start Over</button>
             </div>
         </div>
-            <button id='return-button' onClick={handleReturnButton}>Return Home</button>
+            <button type='button' id='return-button' onClick={handleReturnButton}>Return Home</button>
         </>
     )
 }

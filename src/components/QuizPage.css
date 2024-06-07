@@ -1,4 +1,4 @@
-main.quizpage {
+.quizpage {
     height: auto;
     display: flex;
     flex-direction: column;
@@ -71,7 +71,7 @@ main.quizpage {
     text-align: center;
 }
 
-.quiz-game input:focus {
+.quiz-game input:hover {
     border-color: hsl(var(--input-focus-h), var(--input-focus-s), var(--input-focus-l));
     box-shadow: 0 0 0 3px hsla(var(--input-focus-h), var(--input-focus-s), calc(var(--input-focus-l) +
         40%), 0.8);
@@ -92,14 +92,9 @@ main.quizpage {
     cursor: pointer;
 }
   
-.quiz-button:hover {
-    position:relative;
-    top:1px;
-}
-
 .quiz-game button:active {
     position:relative;
-    top:1px;
+    top:2px;
 }
 
 /* Quiz Progress Container Items */

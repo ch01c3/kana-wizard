@@ -1,5 +1,6 @@
 import './Homepage.css'
 import { useRef, useState, useContext } from 'react'
+import { motion } from 'framer-motion'
 
 import { FormValues } from '../store/form-values-context.jsx'
 import Checkbox from './Checkbox.jsx'
@@ -9,7 +10,7 @@ const [url1,url2] = ['https://en.wikipedia.org/wiki/Hiragana', 'https://en.wikip
 
 export default function Homepage({onSubmitForm}) {
     const {fonts, checkboxOptions, checkBoxes, setCheckBoxes, fontValue, setFontValue} = useContext(FormValues)
-    const [isDropdown, setIsDropdown] = useState('none')
+    const [isDropdown, setIsDropdown] = useState(false)
 
     const romajiDialog = useRef()
 
@@ -22,8 +23,7 @@ export default function Homepage({onSubmitForm}) {
     }
 
     function handleDropDown() {
-        if(isDropdown === 'none') setIsDropdown('block');
-        else setIsDropdown('none')
+        setIsDropdown(!isDropdown);
     }
 
     function handleFontSelect(font) {
@@ -32,11 +32,15 @@ export default function Homepage({onSubmitForm}) {
     }
 
     function createFontSpan(option) {
-        return <span 
-        key={option} 
+        return <motion.span 
+        key={option}
+        variants={{
+            open: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24}},
+            close: { opacity: 0, y: 20, transition: { duration: 0.3}}
+        }}
         onClick={() => handleFontSelect(option)}>
             {option}
-        </span>
+        </motion.span>
     }
 
     function createFontsSpans() {
@@ -98,10 +102,25 @@ export default function Homepage({onSubmitForm}) {
                 <p style={{fontFamily:fontValue}}>やあ</p>
             </div>
             <div className="dropdown">
-                <button className="dropbtn" onClick={handleDropDown}>{fontValue}</button>
-                    <div id="font-dropdown" style={{display:isDropdown}} className="dropdown-content">
+                <motion.button 
+                    type='button' 
+                    className="dropbtn"
+                    whileTap={{ scale: 0.97 }}
+                    onClick={handleDropDown}>
+                        {fontValue}
+                </motion.button>
+                    <motion.div 
+                        id="font-dropdown" 
+                        className="dropdown-content"
+                        variants={{
+                            open: {opacity: 1, transition: { type: "spring",  staggerChildren: 0.08, delayChildren: 0.1}},
+                            close: {opacity: 0, transition: { type: "spring", duration: 1} }
+                        }}
+                        animate={isDropdown ? 'open' : 'close'}
+                        style={{ pointerEvents: isDropdown ? "auto" : "none" }}
+                    >
                         {createFontsSpans()}
-                    </div>
+                    </motion.div>
             </div> 
         </div>
         <div className='content-form-container box-effects'>
