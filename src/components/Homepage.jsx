@@ -1,5 +1,5 @@
 import './Homepage.css'
-import { useRef, useState, useContext } from 'react'
+import { useRef, useState, useContext, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
 import { FormValues } from '../store/form-values-context.jsx'
@@ -11,8 +11,17 @@ const [url1,url2] = ['https://en.wikipedia.org/wiki/Hiragana', 'https://en.wikip
 export default function Homepage({onSubmitForm}) {
     const {fonts, checkboxOptions, checkBoxes, setCheckBoxes, fontValue, setFontValue} = useContext(FormValues)
     const [isDropdown, setIsDropdown] = useState(false)
+    const [isDropdownFocus, setIsDropdownFocus] = useState(true)
 
     const romajiDialog = useRef()
+    const dropdownDiv = useRef()
+
+// Added mouse's events listeners for when the dropdown list items are hovered/focused to prevent the onBlur function to execute
+    useEffect(() => {
+        const dropdownList = dropdownDiv.current
+        dropdownList.addEventListener("mouseout", (e) => {setIsDropdownFocus(true)})
+        dropdownList.addEventListener("mouseover", (e) => {setIsDropdownFocus(false)})
+    }, [])
 
     function handleRomajiModal() {
         romajiDialog.current.showModal()
@@ -23,7 +32,7 @@ export default function Homepage({onSubmitForm}) {
     }
 
     function handleDropDown() {
-        setIsDropdown(!isDropdown);
+       setIsDropdown(!isDropdown)
     }
 
     function handleFontSelect(font) {
@@ -101,7 +110,7 @@ export default function Homepage({onSubmitForm}) {
             <div className="font-form-display">
                 <p style={{fontFamily:fontValue}}>やあ</p>
             </div>
-            <div className="dropdown">
+            <div className="dropdown" onBlur={() => isDropdownFocus ? setIsDropdown(false) : null}>
                 <motion.button 
                     type='button' 
                     className="dropbtn"
@@ -110,8 +119,9 @@ export default function Homepage({onSubmitForm}) {
                         {fontValue}
                 </motion.button>
                     <motion.div 
-                        id="font-dropdown" 
                         className="dropdown-content"
+                        ref={dropdownDiv}
+                        initial={false}
                         variants={{
                             open: {opacity: 1, transition: { type: "spring",  staggerChildren: 0.08, delayChildren: 0.1}},
                             close: {opacity: 0, transition: { type: "spring", duration: 1} }
@@ -128,10 +138,17 @@ export default function Homepage({onSubmitForm}) {
             <form className='content-form' onSubmit={handleSubmit}>
                 {createCheckboxes()}
                 <span>
-                    <button type='button' onClick={() => handleSelection(true)}>Select All</button>
-                    <button type='button' onClick={() => handleSelection(false)}>Deselect All</button>
+                    <motion.button type='button' onClick={() => handleSelection(true)} whileTap={{ y: 2 }}>Select All</motion.button>
+                    <motion.button type='button' onClick={() => handleSelection(false)} whileTap={{ y: 2 }}>Deselect All</motion.button>
                 </span>
-                <button type='submit' id='submit-button'>Start</button>
+                <motion.button 
+                    type='submit' 
+                    id='submit-button' 
+                    whileTap={{ y: 2 }}
+                    whileHover={{ scale: 1.1 }}
+                >
+                    Start
+                </motion.button>
             </form>
         </div>
     </>
