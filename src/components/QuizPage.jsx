@@ -1,5 +1,6 @@
 import './QuizPage.css'
 import { useState, useRef, useContext } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 import QuizOver from './QuizOver.jsx'
 import { FormValues } from '../store/form-values-context.jsx'
@@ -67,6 +68,7 @@ export default function QuizPage({onReturn}) {
     let isQuizOver = kanaListValues.kanaList.length === 0 ? true : false
     
     const correctPct = (kanaListValues.progress.correctAtt/kanaListValues.progress.totalAtt)*100
+    const kanaChanged = (kanaListValues.prevData.prevKana !== kanaListValues.kanaList[0].value)
 
     function handleClearInput() {
         inputValue.current.value = ''
@@ -182,18 +184,74 @@ export default function QuizPage({onReturn}) {
         </div>
         <div id='quiz-container'>
             <div className='quiz-log box-effects'>
-                <h1 style={{color:`${kanaListValues.kanaLog.textColor}`}}>{kanaListValues.kanaLog.title}</h1>
-                <h2>{kanaListValues.kanaLog.subtitle}</h2>
+                <motion.h1
+                    key={Math.random()}
+                    style={{color:`${kanaListValues.kanaLog.textColor}`}}
+                    variants={{
+                        change: { scale: [1.1,1.2,1.3,1.2,1.1,1.0], transition: { duration: 0.3}},
+                        fail: { x: [8,-8,8,-8,0], transition: { duration: 0.25}}
+                    }}
+                    animate={kanaChanged ? 'change' : 'fail'}
+                    >
+                        {kanaListValues.kanaLog.title}
+                    </motion.h1>
+                <motion.h2
+                    key={kanaListValues.kanaLog.subtitle}
+                    animate={{
+                        opacity: [0,0.5,1]
+                    }}
+                >
+                    {kanaListValues.kanaLog.subtitle}
+                    </motion.h2>
                 <div className='quiz-log-display'>
-                    <p style={{fontFamily:fontValue}}>{kanaListValues.prevData.prevKana}</p>
+                    <motion.p
+                        key={Math.random()}
+                        style={{fontFamily:fontValue}}
+                        variants={{
+                            change: { x: [70,-10,0], transition: { duration: 0.3}},
+                            fail: { x: [8,-8,8,-8,0], transition: { duration: 0.25}}
+                        }}
+                        animate={kanaChanged ? 'change' : 'fail'}
+                    >
+                            {kanaListValues.prevData.prevKana}
+                        </motion.p>
                 </div>
+                <motion.div
+                    key={(kanaListValues.prevData.prevRomaji === kanaListValues.kanaList[0].value) ? '?' : kanaListValues.prevData.prevRomaji}
+                    variants={{
+                        change: { x: [70,-10,0], transition: { duration: 0.3}},
+                        fail: { x: [8,-8,8,-8,0], transition: { duration: 0.25}}
+                    }}
+                    animate={kanaChanged ? 'change' : 'fail'}
+                >
                 {!kanaListValues.prevData.prevRomaji ? <h1>&nbsp;</h1> : <h1>{kanaListValues.prevData.prevRomaji.toLocaleString()}</h1>}
+                </motion.div>
             </div>
             <div className='quiz-game box-effects'>
                 {isQuizOver && <QuizOver onReset={handleStartOver} progress={correctPct} quizOver={isQuizOver}/>}
-                <h1>Remaining Kana : {kanaListValues.kanaList.length}</h1>
+                <h1>Remaining Kana :&nbsp; 
+                    <motion.p
+                        key={kanaListValues.kanaList.length}
+                        variants={{
+                            change: { scale: [1.1,1.2,1.3,1.2,1.1,1.0], transition: { duration: 0.3}}
+                        }}
+                        animate={'change'}
+                    >
+                        {kanaListValues.kanaList.length}
+                    </motion.p>
+                </h1>
                 <div className='quiz-game-display'>
-                    <p style={{fontFamily:fontValue}}>{isQuizOver ? '...' : kanaListValues.kanaList[0].value}</p>
+                    <motion.p
+                        key={Math.random()}
+                        style={{fontFamily:fontValue}}
+                        variants={{
+                            change: { scale: [1.2,1.3,1.2,1.1,1.0], transition: { duration: 0.3}},
+                            fail: { x: [8,-8,8,-8,0], transition: { duration: 0.3}}
+                        }}
+                        animate={(kanaChanged ? 'change' : 'fail')}
+                        >
+                        {isQuizOver ? '...' : kanaListValues.kanaList[0].value}
+                    </motion.p>
                 </div>
                 <input 
                     id='text-input' 
@@ -205,7 +263,16 @@ export default function QuizPage({onReturn}) {
                     ref={inputValue}
                     disabled={isQuizOver ? true : false}
                 />
-                <button type='button' className='quiz-button' onClick={handleButtonClick} disabled={isQuizOver ? true : false}>Enter</button>
+                <motion.button 
+                    type='button' 
+                    className='quiz-button' 
+                    onClick={handleButtonClick} 
+                    disabled={isQuizOver ? true : false} 
+                    whileTap={{ y: 2 }}
+                    whileHover={{ scale: 1.1}}
+                    >
+                        Enter
+                    </motion.button>
             </div>
             <div className='quiz-progress box-effects'>
                 <label htmlFor='game-progress'>Progress</label>
@@ -226,10 +293,18 @@ export default function QuizPage({onReturn}) {
                         </tr>
                     </tbody>
                 </table>
-                <button type='button' onClick={handleStartOver}>Start Over</button>
+                <motion.button type='button' onClick={handleStartOver} whileTap={{ y: 2 }} whileHover={{ scale: 1.1}}>Start Over</motion.button>
             </div>
         </div>
-            <button type='button' id='return-button' onClick={handleReturnButton}>Return Home</button>
+            <motion.button 
+                type='button' 
+                id='return-button' 
+                onClick={handleReturnButton}
+                whileTap={{ y: 2 }}
+                whileHover={{ scale: 1.1 }}
+                >
+                    Return Home
+            </motion.button>
         </>
     )
 }

@@ -62,6 +62,10 @@
     margin-top: 20px;
 }
 
+.quiz-game p {
+    display: inline-block;
+}
+
 .quiz-game input {
     height: 30px;
     width: 90px;
@@ -92,11 +96,6 @@
     cursor: pointer;
 }
   
-.quiz-game button:active {
-    position:relative;
-    top:2px;
-}
-
 /* Quiz Progress Container Items */
   
 .quiz-progress label {
@@ -143,11 +142,6 @@
   color:#FFFFFF;
   font-size:0.9em;
   padding:5px 15px;
-}
-
-.quiz-progress button:active {
-    position:relative;
-    top:1px;
 }
 
 /* Quiz Over styles */
@@ -201,11 +195,6 @@
   font-size:1em;
   padding:7px 25px;
 }
-
-#return-button:active {
-    position:relative;
-    top:1px;
-  }
 
 @media (width < 800px) {
     .quiz-log, .quiz-progress {

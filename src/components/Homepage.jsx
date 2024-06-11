@@ -138,8 +138,8 @@ export default function Homepage({onSubmitForm}) {
             <form className='content-form' onSubmit={handleSubmit}>
                 {createCheckboxes()}
                 <span>
-                    <motion.button type='button' onClick={() => handleSelection(true)} whileTap={{ y: 2 }}>Select All</motion.button>
-                    <motion.button type='button' onClick={() => handleSelection(false)} whileTap={{ y: 2 }}>Deselect All</motion.button>
+                    <motion.button type='button' onClick={() => handleSelection(true)} whileTap={{ y: 2 }} whileHover={{ scale: 1.1 }}>Select All</motion.button>
+                    <motion.button type='button' onClick={() => handleSelection(false)} whileTap={{ y: 2 }} whileHover={{ scale: 1.1 }}>Deselect All</motion.button>
                 </span>
                 <motion.button 
                     type='submit' 

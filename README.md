@@ -3,7 +3,7 @@
 # But why ?
 > <p><i>Locale*</i> romanization of japanese to different languages/phonologys.</p><p><i>Scalable</i> project aiming to append more japanese words.</p><p><i>Free</i> access in any device with a browser.</p><p>Currently under development.</p>
 Kana Wizard is a Quiz App developed for, _initially_, hiragana and katana general practices.
-If you are not used to Japanese _"kana"_ it's strongly recommended to check out&nbsp;<a href='https://en.wikipedia.org/wiki/Hiragana'target='_blank'>Hiragana</a> and&nbsp;<a href="https://en.wikipedia.org/wiki/Katakana" target='_blank'>Katana</a> public wiki or any learning app of your choice before trying out the Quiz.
+If you are not used to Japanese _"kana"_ it's strongly recommended to check out&nbsp;<a href='https://en.wikipedia.org/wiki/Hiragana' target='_blank'>Hiragana</a> and&nbsp;<a href='https://en.wikipedia.org/wiki/Katakana' target='_blank'>Katana</a> public wiki or any learning app of your choice before trying out the Quiz.
 
 
 ## Locale romanization
