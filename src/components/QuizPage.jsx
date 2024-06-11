@@ -68,11 +68,18 @@ export default function QuizPage({onReturn}) {
     let isQuizOver = kanaListValues.kanaList.length === 0 ? true : false
     
     const correctPct = (kanaListValues.progress.correctAtt/kanaListValues.progress.totalAtt)*100
-    const kanaChanged = (kanaListValues.prevData.prevKana !== kanaListValues.kanaList[0].value)
+    let kanaChanged = false
+    let romajiChanged = false
+    if(kanaListValues.kanaList.length === 0){kanaChanged = false}
+    else {kanaChanged = kanaListValues.prevData.prevKana !== kanaListValues.kanaList[0].value}
+
+    if(kanaListValues.kanaList.length === 0){romajiChanged = false}
+    else {romajiChanged = kanaListValues.prevData.prevRomaji === kanaListValues.kanaList[0].value}
 
     function handleClearInput() {
         inputValue.current.value = ''
     }
+
 
     function handleSkipAnswer() {
         const skippedAnswer = kanaListValues.kanaList[0]
@@ -217,7 +224,7 @@ export default function QuizPage({onReturn}) {
                         </motion.p>
                 </div>
                 <motion.div
-                    key={(kanaListValues.prevData.prevRomaji === kanaListValues.kanaList[0].value) ? '?' : kanaListValues.prevData.prevRomaji}
+                    key={romajiChanged ? '?' : kanaListValues.prevData.prevRomaji}
                     variants={{
                         change: { x: [70,-10,0], transition: { duration: 0.3}},
                         fail: { x: [8,-8,8,-8,0], transition: { duration: 0.25}}
