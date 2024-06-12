@@ -1,6 +1,6 @@
 import './QuizPage.css'
 import { useState, useRef, useContext } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 import QuizOver from './QuizOver.jsx'
 import { FormValues } from '../store/form-values-context.jsx'
@@ -27,7 +27,8 @@ const kanaAswers = {
         title: 'Wrong',
         subtitle: "That's not it!",
         textColor: '#be201c',
-    }}
+    }
+}
 
 export default function QuizPage({onReturn}) {
     const {fontValue, checkBoxes } = useContext(FormValues);
@@ -198,17 +199,17 @@ export default function QuizPage({onReturn}) {
                         change: { scale: [1.1,1.2,1.3,1.2,1.1,1.0], transition: { duration: 0.3}},
                         fail: { x: [8,-8,8,-8,0], transition: { duration: 0.25}}
                     }}
-                    animate={kanaChanged ? 'change' : 'fail'}
+                    animate={kanaChanged || isQuizOver ? 'change' : 'fail'}
                     >
                         {kanaListValues.kanaLog.title}
                     </motion.h1>
                 <motion.h2
-                    key={kanaListValues.kanaLog.subtitle}
+                    key={ isQuizOver ? 'Over' : kanaListValues.kanaLog.subtitle}
                     animate={{
                         opacity: [0,0.5,1]
                     }}
                 >
-                    {kanaListValues.kanaLog.subtitle}
+                    { isQuizOver ? 'You did it!' : kanaListValues.kanaLog.subtitle}
                     </motion.h2>
                 <div className='quiz-log-display'>
                     <motion.p
@@ -222,6 +223,7 @@ export default function QuizPage({onReturn}) {
                     >
                             {kanaListValues.prevData.prevKana}
                         </motion.p>
+                
                 </div>
                 <motion.div
                     key={romajiChanged ? '?' : kanaListValues.prevData.prevRomaji}
@@ -244,7 +246,7 @@ export default function QuizPage({onReturn}) {
                         }}
                         animate={'change'}
                     >
-                        {kanaListValues.kanaList.length}
+                        { isQuizOver ? '' : kanaListValues.kanaList.length}
                     </motion.p>
                 </h1>
                 <div className='quiz-game-display'>
@@ -257,7 +259,7 @@ export default function QuizPage({onReturn}) {
                         }}
                         animate={(kanaChanged ? 'change' : 'fail')}
                         >
-                        {isQuizOver ? '...' : kanaListValues.kanaList[0].value}
+                        {isQuizOver ? '' : kanaListValues.kanaList[0].value}
                     </motion.p>
                 </div>
                 <input 
