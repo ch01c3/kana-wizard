@@ -1,31 +1,13 @@
 import { useState } from "react"
 import Homepage from "./Homepage"
 import QuizPage from "./QuizPage"
-import { FormValues } from "../store/form-values-context"
-import { motion, AnimatePresence } from "framer-motion"
 
-const fonts = ['Lato','Mochiy Pop One','Noto Sans JP']
-const checkboxOptions = ['Main Hiragana','Diacritics Hiragana','Yōon Hiragana','Main Katakana','Diacritics Katakana','Yōon Katakana']
+import { motion, AnimatePresence } from "framer-motion"
 
 export default function Main() {
     const [isHomepage, setIsHomepage] = useState(true)
-    const [fontSelected, setFontSelected] = useState(fonts[0])
-    const [checkboxValues, setCheckboxValues] = useState(checkboxOptions.reduce((options, option, optionIndex) => ({
-        ...options,
-        [option]: optionIndex === 0 ? true : false
-    }), {}))
-
-    const ctxValue = {
-        fonts,
-        checkboxOptions,
-        checkBoxes : checkboxValues,
-        setCheckBoxes: setCheckboxValues,
-        fontValue: fontSelected,
-        setFontValue: setFontSelected
-    }
     
     return (
-        <FormValues.Provider value={ctxValue}>
         <main>
             <AnimatePresence layout mode="wait">
                 {isHomepage && (
@@ -51,6 +33,5 @@ export default function Main() {
                         </motion.div>)}
             </AnimatePresence>
         </main>
-        </FormValues.Provider>
     )
 }

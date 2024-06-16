@@ -1,22 +1,28 @@
 import './Homepage.css'
-import { useRef, useState, useContext, useEffect } from 'react'
+import { useRef, useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { fontActions, checkBoxesActions } from '../store/index.js'
 import { motion } from 'framer-motion'
 
-import { FormValues } from '../store/form-values-context.jsx'
 import Checkbox from './Checkbox.jsx'
 import RomajiModal from './RomajiModal.jsx'
 
 const [url1,url2] = ['https://en.wikipedia.org/wiki/Hiragana', 'https://en.wikipedia.org/wiki/Katakana']
 
 export default function Homepage({onSubmitForm}) {
-    const {fonts, checkboxOptions, checkBoxes, setCheckBoxes, fontValue, setFontValue} = useContext(FormValues)
     const [isDropdown, setIsDropdown] = useState(false)
     const [isDropdownFocus, setIsDropdownFocus] = useState(true)
+
+    const dispatch = useDispatch()
+    const fonts = useSelector((state) => state.fonts.fonts)
+    const fontSelected = useSelector((state) => state.fonts.fontSelected)
+    const checkboxOptions = useSelector((state) => state.checkboxes.checkboxesOptions)
+    const checkBoxes= useSelector((state) => state.checkboxes.checkBoxes)
 
     const romajiDialog = useRef()
     const dropdownDiv = useRef()
 
-// Added mouse's events listeners for when the dropdown list items are hovered/focused to prevent the onBlur function to execute
+// Mouse's events listeners for when the dropdown list items are hovered/focused to prevent the onBlur function to execute
     useEffect(() => {
         const dropdownList = dropdownDiv.current
         dropdownList.addEventListener("mouseout", (e) => {setIsDropdownFocus(true)})
@@ -36,7 +42,7 @@ export default function Homepage({onSubmitForm}) {
     }
 
     function handleFontSelect(font) {
-        setFontValue(font)
+        dispatch(fontActions.setFont(font))
         handleDropDown()
     }
 
@@ -58,10 +64,7 @@ export default function Homepage({onSubmitForm}) {
 
 // Checkbox functions
     function handleCheckboxChange(checkID) {
-        setCheckBoxes(prevValues => ({
-            ...prevValues,
-            [checkID]: !prevValues[checkID]
-        }))
+        dispatch(checkBoxesActions.setCheckboxes(checkID))
     }
 
     function createCheckbox(option) {
@@ -85,10 +88,7 @@ export default function Homepage({onSubmitForm}) {
     }
 
     function handleSelection(value) {
-        setCheckBoxes(Object.keys(checkBoxes).reduce((options, option) => ({
-            ...options,
-            [option]: value
-        }), {}))
+        dispatch(checkBoxesActions.setAllCheckboxes(value))
     }
 
     return (
@@ -108,7 +108,7 @@ export default function Homepage({onSubmitForm}) {
         <div className="font-form-container box-effects">
             <h1>Choose your font style</h1>
             <div className="font-form-display">
-                <p style={{fontFamily:fontValue}}>やあ</p>
+                <p style={{fontFamily:fontSelected}}>やあ</p>
             </div>
             <div className="dropdown" onBlur={() => isDropdownFocus ? setIsDropdown(false) : null}>
                 <motion.button 
@@ -116,7 +116,7 @@ export default function Homepage({onSubmitForm}) {
                     className="dropbtn"
                     whileTap={{ scale: 0.97 }}
                     onClick={handleDropDown}>
-                        {fontValue}
+                        {fontSelected}
                 </motion.button>
                     <motion.div 
                         className="dropdown-content"

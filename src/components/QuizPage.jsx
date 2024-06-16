@@ -1,9 +1,9 @@
 import './QuizPage.css'
-import { useState, useRef, useContext } from 'react'
+import { useState, useRef } from 'react'
+import { useSelector } from 'react-redux'
 import { motion } from 'framer-motion'
 
 import QuizOver from './QuizOver.jsx'
-import { FormValues } from '../store/form-values-context.jsx'
 import {MAIN_H, MAIN_K, DIAC_H, DIAC_K, YOON_H, YOON_K} from '../data.js'
 
 const KANA_DATA = [MAIN_H,DIAC_H,YOON_H,MAIN_K,DIAC_K,YOON_K]
@@ -31,7 +31,9 @@ const kanaAswers = {
 }
 
 export default function QuizPage({onReturn}) {
-    const {fontValue, checkBoxes } = useContext(FormValues);
+    const fontSelected = useSelector((state) => state.fonts.fontSelected)
+    const checkBoxes= useSelector((state) => state.checkboxes.checkBoxes)
+    
     let kanaList = []
     Object.entries(checkBoxes).forEach((element,index) => {
         kanaList = [...kanaList, ...(element[1] ? KANA_DATA[index] : '')]
@@ -214,7 +216,7 @@ export default function QuizPage({onReturn}) {
                 <div className='quiz-log-display'>
                     <motion.p
                         key={Math.random()}
-                        style={{fontFamily:fontValue}}
+                        style={{fontFamily:fontSelected}}
                         variants={{
                             change: { x: [70,-10,0], transition: { duration: 0.3}},
                             fail: { x: [8,-8,8,-8,0], transition: { duration: 0.25}}
@@ -252,7 +254,7 @@ export default function QuizPage({onReturn}) {
                 <div className='quiz-game-display'>
                     <motion.p
                         key={Math.random()}
-                        style={{fontFamily:fontValue}}
+                        style={{fontFamily:fontSelected}}
                         variants={{
                             change: { scale: [1.2,1.3,1.2,1.1,1.0], transition: { duration: 0.3}},
                             fail: { x: [8,-8,8,-8,0], transition: { duration: 0.3}}
