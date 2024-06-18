@@ -12,6 +12,7 @@ const [url1,url2] = ['https://en.wikipedia.org/wiki/Hiragana', 'https://en.wikip
 export default function Homepage({onSubmitForm}) {
     const [isDropdown, setIsDropdown] = useState(false)
     const [isDropdownFocus, setIsDropdownFocus] = useState(true)
+    const [isModalOpen, setIsModalOpen] = useState(false)
 
     const dispatch = useDispatch()
     const fonts = useSelector((state) => state.fonts.fonts)
@@ -19,8 +20,9 @@ export default function Homepage({onSubmitForm}) {
     const checkboxOptions = useSelector((state) => state.checkboxes.checkboxesOptions)
     const checkBoxes= useSelector((state) => state.checkboxes.checkBoxes)
 
-    const romajiDialog = useRef()
     const dropdownDiv = useRef()
+    const body = document.body
+    let oldBodyWidth = document.body.offsetWidth
 
 // Mouse's events listeners for when the dropdown list items are hovered/focused to prevent the onBlur function to execute
     useEffect(() => {
@@ -29,13 +31,14 @@ export default function Homepage({onSubmitForm}) {
         dropdownList.addEventListener("mouseover", (e) => {setIsDropdownFocus(false)})
     }, [])
 
-    function handleRomajiModal() {
-        romajiDialog.current.showModal()
-    }
-
-    function handleCloseModal() {
-        romajiDialog.current.close()
-    }
+// Setting the body width to prevent 'document reflow' when opening/closing modals
+    useEffect(() => {
+        if(isModalOpen) {
+            body.style.width = `${oldBodyWidth}px`
+        } else {
+            body.style.width = 'auto'
+        }
+    },[isModalOpen])
 
     function handleDropDown() {
        setIsDropdown(!isDropdown)
@@ -93,7 +96,8 @@ export default function Homepage({onSubmitForm}) {
 
     return (
     <>
-        <RomajiModal ref={romajiDialog} onCloseModal={handleCloseModal}/>
+        {/* <RomajiModal ref={romajiDialog} onCloseModal={handleCloseModal}/> */}
+        <RomajiModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} bodyWidth={oldBodyWidth}/>
         <div className="text-container box-effects">
             <p>
                 Kana Wizard is a Quiz App developed for hiragana and katana general practices, 
@@ -102,7 +106,7 @@ export default function Homepage({onSubmitForm}) {
                 <a href={url1} target='_blank'>Hiragana</a> and&nbsp;
                 <a href={url2} target='_blank'>Katana</a> public wiki
                 or any learning app of your choice before continue. Also, to consult our available Rōmaji input&nbsp;
-                <span className='text-link' onClick={handleRomajiModal}>click here</span>.
+                <span className='text-link' onClick={() => setIsModalOpen(true)}>click here</span>.
             </p>
         </div>
         <div className="font-form-container box-effects">

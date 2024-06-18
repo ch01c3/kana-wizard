@@ -30,17 +30,21 @@ a:visited {
 
 /* Dialog Modal styles */
 
-.romaji-modal {
-  margin: auto;
-  border: none;
-  padding: 0px 30px 30px 30px;
-  background-color: rgba(255,255,255,0.5);
-  backdrop-filter: blur(10px)
+.ReactModal__Body--open {
+  overflow: hidden;
 }
 
-.romaji-modal button {
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 500ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open{
+  opacity: 1;
+}
+
+.close-modal {
   align-self: flex-end;
-  margin-top: 15px ;
   background-color: #BC002D;
   color: white;
   font-size: 0.9rem;
@@ -53,8 +57,6 @@ a:visited {
   position:relative;
   top:1px;
 }
-
-
 
 #close-dialog {
   display: flex;
@@ -120,6 +122,10 @@ a:visited {
   padding-right: 10px;
 }
 
+.font-form-container {
+  z-index: 1;
+}
+
 .font-form-container, .content-form-container, .content-form {
   width: 600px;
   min-width: 100px;
@@ -129,10 +135,6 @@ a:visited {
   place-items: center;
   margin-top: 40px;
   padding: 20px;
-}
-
-.font-form-container {
-  z-index: 1;
 }
   
 .font-form-display {

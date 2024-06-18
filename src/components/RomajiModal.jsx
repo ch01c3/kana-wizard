@@ -1,10 +1,45 @@
-import { forwardRef } from "react"
+import ReactModal from 'react-modal'
 import { MAIN_H, MAIN_K, DIAC_H, DIAC_K, YOON_H, YOON_K } from '../data.js'
 
-const RomajiModal = forwardRef(function RomajiModal({onCloseModal}, ref) {
+const customStyles = {
+    overlay: {
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      backgroundColor: 'rgba(255, 255, 255, 0.8)',
+      zIndex: 2
+    },
+    content: {
+      display: 'flex',
+      zIndex: 2,
+      flexDirection: 'column',
+      position: 'absolute',
+      top: '40px',
+      left: '40px',
+      right: '40px',
+      bottom: '40px',
+      border: '1px solid #ccc',
+      backgroundColor: 'rgba(255, 255, 255, 0.85)',
+      overflow: 'auto',
+      WebkitOverflowScrolling: 'touch',
+      borderRadius: '5px',
+      outline: 'none',
+      padding: '20px'
+    }
+  }
+
+ReactModal.setAppElement('#root')
+export default function RomajiModal({isOpen, setIsOpen}) {
+
     return (
-    <dialog ref={ref} className="romaji-modal">
-        <button onClick={onCloseModal}>X</button>
+    <ReactModal
+        isOpen={isOpen}
+        onRequestClose={() => setIsOpen(false)}
+        style={customStyles}
+    >
+        <button className='close-modal' onClick={() => setIsOpen(false)}>X</button>
         <div id="romaji-table">
             <table>
                 <caption>Main Kana</caption>
@@ -76,7 +111,5 @@ const RomajiModal = forwardRef(function RomajiModal({onCloseModal}, ref) {
                 </tbody>
             </table>
         </div>
-    </dialog>)
-})
-
-export default RomajiModal
+    </ReactModal>
+)}

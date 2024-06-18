@@ -59,6 +59,10 @@ body {
   grid-template-rows: auto 1fr auto;
 }
 
+main {
+  overflow: hidden;
+}
+
 h1 {
   font-size: 1.4em;
 }
